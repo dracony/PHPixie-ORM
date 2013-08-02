@@ -14,7 +14,7 @@ namespace PHPixie;
 class ORM {
 	
 	/**
-	 * Pixie Dependancy Container
+	 * Pixie Dependency Container
 	 * @var \PHPixie\Pixie
 	 */
 	public $pixie;

@@ -282,8 +282,9 @@ class Model
 							$alias.'.'.$rel_model->id_field,
 							), 'left');
 					}else{
+						$join_on_id = isset($rel['with_key']) ? $rel['with_key'] : $model->id_field;
 						$this->query->join(array($rel_model->table, $alias), array(
-							$model_alias.'.'.$model->id_field,
+							$model_alias.'.'.$join_on_id,
 							$alias.'.'.$rel['key'],
 							), 'left');
 					}

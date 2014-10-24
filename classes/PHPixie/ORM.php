@@ -52,6 +52,8 @@ class ORM {
 		{
 			$model = $model->where($model->id_field, $id)->find();
 			$model->values(array($model->id_field => $id));
+			if (!$model->loaded())
+				throw new \PHPixie\Exception\PageNotFound(ucfirst($model->model_name)." not found with id '".$id."'");
 		}
 		return $model;
 	}

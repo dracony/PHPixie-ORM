@@ -73,7 +73,7 @@ $articleQuery = $orm->query('article');
 
 ### Configuration 
 
-By default ORM assumes that thte table name is the plural of the name of the model, and that the name of the primary key is 'id'.
+By default ORM assumes that the table name is the plural of the name of the model, and that the name of the primary key is 'id'.
 For MongoDB database the default id field '_id' is assumed. You can ovveride these settings for a particular model in your
 configuration file:
 

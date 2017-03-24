@@ -20,7 +20,7 @@ abstract class Entity implements \PHPixie\ORM\Models\Model\Entity
         return $this->entity->modelName();
     }
     
-    public function asObject($recursive = false, $filter = false)
+    public function asObject($recursive = false, $filter = true)
     {
         $data = $this->entity->asObject($recursive, $filter);
 

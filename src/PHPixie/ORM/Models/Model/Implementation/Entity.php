@@ -71,7 +71,7 @@ abstract class Entity implements \PHPixie\ORM\Models\Model\Entity
         return $this->relationshipProperties[$name];
     }
     
-    public function asObject($recursive = false, $filter = false)
+    public function asObject($recursive = false, $filter = true)
     {
         $this->requirePropertyNames();
 

@@ -17,7 +17,7 @@ abstract class Single extends \PHPixie\ORM\Relationships\Relationship\Implementa
         return $value;
     }
 
-    public function asData($recursive = false, $filter = false)
+    public function asData($recursive = false, $filter = true)
     {
         $value = $this->value();
         if ($value === null)

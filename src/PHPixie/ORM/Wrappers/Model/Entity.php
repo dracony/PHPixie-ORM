@@ -8,6 +8,7 @@ abstract class Entity implements \PHPixie\ORM\Models\Model\Entity
      * @type \PHPixie\ORM\Drivers\Driver\PDO\Entity|\PHPixie\ORM\Drivers\Driver\Mongo\Entity
      */
     protected $entity;
+    protected $hidden = [];
     
     public function __construct($entity)
     {
@@ -19,9 +20,19 @@ abstract class Entity implements \PHPixie\ORM\Models\Model\Entity
         return $this->entity->modelName();
     }
     
-    public function asObject($recursive = false)
+    public function asObject($recursive = false, $filter = false)
     {
-        return $this->entity->asObject($recursive);
+        $data = $this->entity->asObject($recursive, $filter);
+
+        if ($filter) {
+            foreach ($this->hidden as $key) {
+                if (isset($data->{$key})) {
+                    unset($data->{$key});
+                }
+            }
+        }
+
+        return $data;
     }
     
     public function relationshipPropertyNames()

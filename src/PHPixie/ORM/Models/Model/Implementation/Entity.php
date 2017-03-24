@@ -71,20 +71,26 @@ abstract class Entity implements \PHPixie\ORM\Models\Model\Entity
         return $this->relationshipProperties[$name];
     }
     
-    public function asObject($recursive = false)
+    public function asObject($recursive = false, $filter = false)
     {
         $this->requirePropertyNames();
-            
+
+        /**
+         * @var $data \PHPixie\ORM\Data\Types\Map
+         */
         $data = $this->data->data();
 
         if($recursive) {
             foreach($this->relationshipProperties as $name => $property) {
                 if($property instanceof \PHPixie\ORM\Relationships\Relationship\Property\Entity\Data && $property->isLoaded()) {
-                    $data->$name = $property->asData(true);
-                    
+                    /**
+                     * @var $property \PHPixie\ORM\Relationships\Type\OneTo\Type\One\Property\Entity
+                     */
+                    $data->$name = $property->asData($recursive, $filter);
                 }
             }
         }
+
         return $data;
     }
     
